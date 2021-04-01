@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load index %}
+
+<div class="container-fluid row col-md-12">
+	<div class="page_header margin-25">
+		<h1>{{produs.nume}}</h1>
+	</div>
+	<div class="col-md-5">
+		<table class="table table-bordered table-sm">
+			<thead>
+				<tr>
+					<th>Informatii:</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="table-active">
+					<td>Link</td>
+					<td>
+						<a href="{{produs.url}}">link</a>
+					</td>	
+				</tr>
+				<tr>
+					<td>Data adaugare</td>
+					<td>
+           		 	{{produs.data_creare}}
+            	</td>
+            </tr>
+            <tr class="table-active">
+            	<td>Pret initial</td>
+            	<td>
+              		{% if produs|are_preturi %}
+							{{produs|pret_initial|valoare}}
+						{% else %}
+							Indisponibil
+						{% endif %}                  
+            	</td>
+            </tr>
+            <tr>
+            	<td>Pret curent</td>
+            	<td>
+              		{% if produs|are_preturi %}
+							{{produs|pret_final|valoare}} 
+						{% else %}
+							Indisponibil
+						{% endif %}                     
+            	</td>
+            </tr>
+            <tr class="table-active">
+            	<td>Data ultima actualizare</td>
+            	<td>
+            		{% if produs|are_preturi %}
+							{{produs|pret_final|data_creare}}  
+						{% else %}
+							Indisponibil
+						{% endif %}                    
+            	</td>
+				</tr>
+			</tbody>
+		</table>
+	<form role="form" method="post" onSubmit="return confirm('Esti sigur ca vrei sa stergi \'{{produs.nume}}\' din lista de produse?')"> {% csrf_token %}
+		<input type="hidden" name="delete" value="true"/>
+		<button type="submit" class="btn btn-primary float_right" style="margin-top: 8px;">Elimina Produs</button>
+	</form>
+	</div>
+	<div class="col-md-6">
+		<div class="container-fluid" style="width: 75%;">
+    		<canvas id="preturi-chart" data-url="{% url 'preturi_produs' produs.id %}"></canvas>
+  		</div>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+	$(function () {
+		var $preturiChart = $("#preturi-chart");
+      $.ajax({
+        url: $preturiChart.data("url"),
+        success: function (data) {
+          var ctx = $preturiChart[0].getContext("2d");
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Produs',
+                fill: false,
+                backgroundColor: '#0d6efd',
+                borderColor: '#0d6efd',
+                data: data.data
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Diagrama in timp a pretului'
+              },
+              scales: {
+					 xAxes:[{
+					   display: true,
+					   scaleLabel: {
+						  display: true,
+						  labelString: 'Timp'					   
+					   }
+					 }],
+					 yAxes:[{
+					   display: true,
+					   scaleLabel: {
+						  display: true,
+						  labelString: 'Pret'					   
+					   }
+					 }]
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+</script>
+
+{% endblock %}

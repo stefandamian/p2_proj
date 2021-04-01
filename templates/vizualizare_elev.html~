@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load index %}
+
+<div class="container-fluid col-md-12">
+	<div class="page_header">
+		<h1>{{produs.nume}}</h1>
+	</div>
+	<div>
+		<table class="table table-bordered table-sm">
+			<thead>
+				<tr>
+					<th>Link produs</th>
+					<th>Data adaugare</th>
+					<th>Pret initial</th>
+					<th>Pret curent</th>
+					<th>Data ultima actualizare</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<a href="{{produs.url}}">link</a>
+					</td>	
+					<td>
+           		 	{{produs.data_creare}}
+            	</td>
+            	<td>
+              		{% if produs|are_preturi %}
+							{{produs|pret_initial|valoare}}
+						{% else %}
+							Indisponibil
+						{% endif %}                  
+            	</td>
+            	<td>
+              		{% if produs|are_preturi %}
+							{{produs|pret_final|valoare}} 
+						{% else %}
+							Indisponibil
+						{% endif %}                     
+            	</td>
+            	<td>
+            		{% if produs|are_preturi %}
+							{{produs|pret_final|data_creare}}  
+						{% else %}
+							Indisponibil
+						{% endif %}                    
+            	</td>
+				</tr>
+			</tbody>
+		</table>
+   <a href="/produs/{{produs.id}}/del" class="btn btn-primary float_right">Elimina produs</a>
+</div>
+
+{% endblock %}

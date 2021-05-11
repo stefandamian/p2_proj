@@ -2,10 +2,20 @@ from django.db import models
 
 # Create your models here.
 
+class Lista(models.Model):
+	id = models.BigAutoField(primary_key=True)
+	name = models.CharField(max_length=255)
+	def produse(self):
+		produse = [produs for produs in Produs.objects.filter(lista=self)]
+		return produse
+
 class Produs(models.Model):
+	lista = models.ForeignKey(Lista, on_delete=models.CASCADE)
+	site = models.CharField(max_length=255)	
 	data_creare = models.DateField(auto_now_add=True, null=True)
 	nume = models.CharField(max_length=255, null=True)
 	url = models.URLField(max_length=450)
+	poza = models.URLField(max_length=450, null=True)
 	
 	def preturi(self):
 		preturi = [pret for pret in Pret.objects.filter(produs=self)]

@@ -8,19 +8,11 @@
     <div class="col-md-4">
         <form role="form" method="post"> {% csrf_token %}
             <div class="form-group" style="margin-top: 8px;">
-                <label for="url">url</label>
+                <label for="url">URL</label>
                 <input type="text" class="form-control" name="url">
             </div>
             <button type="submit" class="btn btn-primary" style="margin-top: 8px;">Submit</button>
         </form>
     </div>
-    {% if modificare %}
-    <div>
-        <form role="form" method="post"> {% csrf_token %}
-            <input type="hidden" name="stergere" value="True">
-            <button type="submit" class="btn btn-primary" style="margin-top: 8px;" onclick="return confirm('Sunteti sigur ca vreti sa stergeti elevul?')">Stergere</button>
-        </form>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}

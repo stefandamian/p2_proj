@@ -30,4 +30,38 @@ def valoare(obj):
 def data_creare(obj):
     return obj.data_creare
     
+@register.filter
+def emag(obj):
+    return obj['emag']
     
+@register.filter
+def flanco(obj):
+    return obj['flanco']
+    
+@register.filter
+def cel(obj):
+    return obj['cel']
+    
+@register.filter
+def title(obj):
+    return obj['title']
+    
+@register.filter
+def photo(obj):
+    return obj['photo']
+    
+@register.filter
+def price(obj):
+    return obj['price']
+
+@register.filter
+def url(obj):
+    return obj['url']
+    
+@register.filter
+def site(obj):
+    return obj['site']
+    
+@register.filter
+def capitalize(obj):
+    return obj.capitalize()

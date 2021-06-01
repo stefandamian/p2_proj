@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load index %}
+<div class="container-fluid" style="margin: 0; padding: 0;">
+		<div class="align-middle bg-secondary h-20" style="margin: 0; padding: 5px;">
+		 <form action='/search' type="get">
+		  <div class="row">
+		    <div class="mx-auto row col-sm-8">
+		    	<div class="col-sm-11">
+					<input name="name" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+    		         aria-describedby="search-addon" />		    	
+		    	</div>
+		    	<div class="col-sm-1"><button type="submit" class="btn btn-primary">Search</button></div>
+    		 </div>
+		  </div> 			 	
+ 	 	 </form>
+ 	 	</div>
+</div>		
+{% endblock %}

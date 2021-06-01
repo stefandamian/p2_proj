@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load index %}
+<div class="container-fluid">	
+			<table class="table table-bordered table-sm">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Companie</th>
+						<th>Poza</th>
+						<th>Produs</th>
+						<th>Link produs</th>
+						<th>Pret</th>
+						<th>Selectare</th>
+					</tr>
+				</thead>
+				<tbody>
+				  <form method="post"> {% csrf_token %}
+                {% for produs in produse %}
+				    {% if forloop.counter0|divisibleby:2 %}
+					<tr class="table-active">
+                    {% else %}
+					<tr>
+                    {% endif %}
+						<td>{{forloop.counter}}</td>
+						<td>{{produs|site}}</td>						
+						<td>
+                  	<img src="{{produs|photo}}" alt="{{produs|title}}" style="display: block; max-width:230px; max-height:95px; width: auto; height: auto;">
+						</td>	
+						<td>
+                  	{{produs|title}}
+                  </td>					
+						<td>
+                  	<a href="{{produs|url}}">link</a>
+                  </td>
+                  
+                  <td>
+                  	{{produs|price}}                
+                  </td>
+                  <td>
+                  	<input type="checkbox" name="checked[]" value="{{produs|site}}|{{produs|url}}">
+                  </td>
+					</tr>
+                {% endfor %}
+                <input type="hidden" name="name", value="{{name}}"/>
+                <input class="btn btn-primary" type="submit" value="Creaza lista" />
+              </form>
+				</tbody>
+			</table>
+</div>
+{% endblock %}

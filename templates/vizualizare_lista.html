@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load index %}
+
+<div class="container-fluid col-md-12">
+	<div class="page_header margin-25">
+		<h1>{{lista.name|capitalize}}</h1>
+	</div>
+	<div class = "container-fluid row">
+	<div class = "container-fluid col-md-5">
+	  <table class="table table-bordered table-sm">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Produs</th>
+									<th>Link produs</th>
+								</tr>
+							</thead>
+				<tbody>
+                {% for produs in lista.produse %}
+				    {% if forloop.counter0|divisibleby:2 %}
+					<tr class="table-active">
+                    {% else %}
+					<tr>
+                    {% endif %}
+						<td>{{forloop.counter}}</td>
+						<td>
+                  	<a>{{produs.nume|capitalize}}</a>
+						</td>						
+						<td>
+                  	<a href="{{produs.url}}">{{produs.site}}</a>
+                  </td>
+					</tr>
+                {% endfor %}
+				</tbody>
+			 </table>
+   </div>
+   <div class="container-fluid col-md-6">
+   	<canvas id="preturi-chart" style="display: block; box-sizing: border-box;" data-url="{% url 'preturi_lista' lista.id %}"></canvas>
+   </div>
+   </div>
+		
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+	$(function () {
+		var my_colors = ['#4dc9f6', '#f67019', '#f53794', '#537bc4',
+		  '#acc236', '#166a8f', '#00a950', '#58595b', '#8549ba'];
+		var $preturiChart = $("#preturi-chart");
+      $.ajax({
+        url: $preturiChart.data("url"),
+        success: function (data) {
+          datasets = []
+          for (d in data.datasets) {            
+            dataset = {
+              label: data.datasets[d].label,
+              fill: false,
+              backgroundColor: my_colors[data.datasets[d].color_index],
+              borderColor: my_colors[data.datasets[d].color_index],
+              data: data.datasets[d].data
+            }    
+            datasets.push(dataset)	
+          }
+          var ctx = $preturiChart[0].getContext("2d");
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: data.labels,
+              datasets: datasets
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Diagrama in timp a pretului'
+              },
+              scales: {
+					 xAxes:[{
+					   display: true,
+					   scaleLabel: {
+						  display: true,
+						  labelString: 'Timp'					   
+					   }
+					 }],
+					 yAxes:[{
+					   display: true,
+					   scaleLabel: {
+						  display: true,
+						  labelString: 'Pret'					   
+					   }
+					 }]
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+</script>
+
+{% endblock %}

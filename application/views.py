@@ -3,32 +3,26 @@ from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from application.parsers.search import search, ExceptionSearchNotValid
 from application.parsers.parser import parse
-import application.parsers.constants as ct
+from application.parsers.constants import *
 from .models import Produs, Pret, Lista
 
+def home_view(request):
+	context = {
+		"title": "Home"	
+	}
+	return render(request, 'home.html', context)
+
 def produse_view(request):
-# creare pagina principala
 	context = {
 		"title": "Produse",
 		"liste": Lista.objects.all()	
 	}
 	return render(request, 'lista_produse.html', context)
-
-def add_produs_view(request):
-	#nonfunctional si posibil de sters
-	if request.method == "POST":
-		Produs.objects.create(nume='neactualizat',
-									url=request.POST.get("url"))
-		return HttpResponseRedirect('/')
-	context = {
-		'title': 'Adaugare produs'	
-	}
-	return render(request, 'adauga_produs.html', context)
 	
 def add_lista_view(request):
 	if request.method == 'GET':
-		d = []
-		for site in ct.supported_sites:
+		produse_gasite = []
+		for site in supported_sites:
 			name = request.GET.get("name")
 			try:
 				list_of_links = search(name, site)[:3] # maxim primele 3 produse care apar
@@ -36,12 +30,12 @@ def add_lista_view(request):
 				print(e.message)
 			else:				
 				#parsare fiecare link gasit din cautare pentru prezentare
-				d1 = [parse(site, link) for link in list_of_links]
-				d += d1
+				produse_gasite_site = [parse(site, link) for link in list_of_links]
+				produse_gasite += produse_gasite_site
 			 
 		context = {
 		'title': 'Cautare produs',
-		'produse': d,
+		'produse': produse_gasite,
 		'name': name	
 		}
 		return render(request, 'search_produs.html', context)
@@ -54,16 +48,27 @@ def add_lista_view(request):
 		for produs in products:
 			id_produs = Produs.objects.create(lista=id_lista, poza=produs['photo'], site=produs['site'], nume=produs['title'], url=produs['url'])
 			Pret.objects.create(produs=id_produs, valoare=produs['price'])
-		return HttpResponseRedirect('/')		
-			
+		return HttpResponseRedirect('/produse/')		
+
+def show_lista_view(request, id):
+	lista = Lista.objects.get(id=id)
+	if request.method == "POST":
+		if bool(request.POST.get("delete")):
+			lista.delete()
+		return HttpResponseRedirect('/produse/')
+	context = {
+		'title': lista.name,	
+		'lista': lista
+	}
+	return render(request, 'vizualizare_lista.html', context)			
 			
 def show_produs_view(request, id):
-	#nonfunctional
+	#functional, dar nu se poate ajunge la cale "normal"
 	produs = Produs.objects.get(id=id)
 	if request.method == "POST":
 		if bool(request.POST.get("delete")):
 			produs.delete()
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/produse/')
 	context = {
 		'title': produs.nume,	
 		'produs': produs
@@ -71,7 +76,7 @@ def show_produs_view(request, id):
 	return render(request, 'vizualizare_produs.html', context)
 	
 def preturi_chart(request, id):
-	#nonfunctional si posibil de sters
+	#functional, dar nu se poate ajunge la cale "normal"
     produs = Produs.objects.get(id=id)
     preturi = Pret.objects.filter(produs=produs)
     return JsonResponse(data={
@@ -81,20 +86,19 @@ def preturi_chart(request, id):
     
 def preturi_lista_chart(request, id):
     lista = Lista.objects.get(id=id)
-    produse = [p for p in Produs.objects.filter(lista=lista)]
+    produse = [p for p in Produs.objects.filter(lista=lista)]        	
     data = {
 		'labels': [],
 		'datasets': []    
     }
-    print(produse)
-    for index, produs in enumerate(produse, start=1):
-    	dataset = {}
-    	preturi = Pret.objects.filter(produs=produs)
-    	if index == 1:
-    		labels = [pret.data_creare for pret in preturi]
-    		data['labels'] = labels
-    	dataset['data'] = [pret.valoare for pret in preturi]
-    	dataset['label'] = f'produs {index}'
-    	dataset['color_index'] = index
-    	data['datasets'].append(dataset)
+    for index, produs in enumerate(produse):
+      dataset = {}
+      preturi = Pret.objects.filter(produs=produs)
+      labels = [pret.data_creare for pret in preturi]    	
+      if len(labels) > len(data['labels']):
+        data['labels'] = labels
+      dataset['data'] = [pret.valoare for pret in preturi]
+      dataset['label'] = f'produs {index + 1}'
+      dataset['color_index'] = index
+      data['datasets'].append(dataset)
     return JsonResponse(data)

@@ -26,7 +26,7 @@
 $('#formSearch').submit( function (e) {
 	$("#btnSubmit").attr("disabled", true);
 	$("#btnSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-	$("#btnSubmit").append(' Loading...')
+	$("#btnSubmit").append('Loading...')
 });
 </script>
 {% endblock %}

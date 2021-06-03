@@ -1,6 +1,6 @@
 import urllib.request
 from bs4 import BeautifulSoup
-import application.parsers.constants as c
+from application.parsers.constants import *
 import time
 
 class ExceptionSearchNotValid(Exception):
@@ -12,10 +12,11 @@ class ExceptionSearchNotValid(Exception):
 
 
 def search(name, site):
-	name = name.strip()
-	search_name = name.replace(' ', c.spacing[site])
-    
-	url = f'{c.search_url[site]}{search_name}'
+	name = name.strip().lower()
+	search_name = name.replace(' ', spacing[site])
+	if len(name) == 0:
+		return []
+	url = f'{search_url[site]}{search_name}'
         
 	print(url)
     
@@ -25,7 +26,7 @@ def search(name, site):
 		try:
 			web = urllib.request.urlopen(url)
 			request_done = True
-		except:
+		except Exception as e:
 			time.sleep(1)
 			no_time = no_time + 1
 			print('failed to get request, will try again, url- '+ url)
@@ -37,12 +38,16 @@ def search(name, site):
 	soup = BeautifulSoup(web.read(), 'html.parser')
 	
     
-	if len(soup.find_all(*(c.validare[site]))) > 0:
+	if len(soup.find_all(*(validare[site]))) > 0:
 		raise ExceptionSearchNotValid(name, site)   
         
 	list_of_links = []
-	for produs in soup.find(**(c.containter_produse[site])).find_all(*(c.containter_produs[site])):
-		link = produs.find(*(c.link_produs[site]))['href']
-		list_of_links.append(link)
+	result = soup.find(**(containter_produse[site]))
+	if result != None:
+	   for produs in result.find_all(*(containter_produs[site])):	
+		   result = produs.find(*(link_produs[site]))
+		   if result != None:
+			   link = result['href']
+			   list_of_links.append(link)
 	
 	return(list_of_links)

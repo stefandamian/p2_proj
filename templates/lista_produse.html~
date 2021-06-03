@@ -38,7 +38,6 @@
 									<th>#</th>
 									<th>Produs</th>
 									<th>Link produs</th>
-									<th>Data adaugare</th>
 									<th>Pret initial</th>
 									<th>Pret curent</th>
 									<th>Data ultima actualizare</th>
@@ -57,9 +56,6 @@
 						</td>						
 						<td>
                   	<a href="{{produs.url}}">{{produs.site}}</a>
-                  </td>
-                  <td>
-                  	{{produs.data_creare}}
                   </td>
                   <td>
                   	{% if produs|are_preturi %}

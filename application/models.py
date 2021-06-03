@@ -41,5 +41,5 @@ class Pret(models.Model):
 	data_creare = models.DateField(auto_now_add=True, null=True)
         
 	def __str__(self):
-		return f"Pret({self.produs.__str__()}, {self.valoare}, {self.data})"
+		return f"Pret({self.produs.__str__()}, {self.valoare}, {self.data_creare})"
 

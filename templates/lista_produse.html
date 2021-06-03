@@ -4,19 +4,7 @@
 
 {% load index %}
 <div class="container-fluid" style="margin: 0; padding: 0;">
-		<div class="bg-secondary" style="margin: 0; padding: 5px;">
-		 <form action='/search' type="get">
-		  <div class="row">
-		    <div class="col-sm-2"></div>
-		    <div class="col-sm-7"><input name="name" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-    		   aria-describedby="search-addon" /></div>
- 	 	    <div class="col-sm-3"><button type="submit" class="btn btn-primary">Search</button></div>	
-		  </div> 			 	
- 	 	 </form>
- 	 	</div>
-		<!--<a class="btn btn-primary float_right" style="margin-bottom: 10px;" href="/add">Adauga Lista</a>
-	   -->
-			{% for lista in liste %}
+		{% for lista in liste %}
 		<div id="accordion{{forloop.counter}}" class="container-lg">
 			<div class="card">
     			<div class="card-header row" id="heading{{forloop.counter}}" style="margin: 0;">

@@ -47,7 +47,7 @@
 				</tbody>
 			</table>
 			<input type="hidden" name="name", value="{{name}}"/>
-         <input class="btn btn-primary float_right" type="submit" style="margin-bottom: 10px;" value="Creaza lista" />
+         <input class="btn btn-primary float_right" type="submit" style="margin-bottom: 5px;" value="Creaza lista" />
 		</form>
 </div>
 {% endblock %}

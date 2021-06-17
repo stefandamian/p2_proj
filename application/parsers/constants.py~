@@ -1,4 +1,4 @@
-supported_sites = ['cel', 'flanco', 'emag', 'pcGarage']#, 'mediaGalaxy'] #, 'altex']
+supported_sites = ['cel', 'flanco', 'emag', 'pcGarage', 'mediaGalaxy'] #, 'altex']
 
 spacing = {
 	'emag': '%20',

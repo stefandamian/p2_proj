@@ -27,13 +27,13 @@ def job():
 		testcursor.execute(f"select id, data_creare, produs_id from application_pret where produs_id = {produs[0]}")
 		try:		
 			last_added_price = testcursor.fetchall()[-1]
-		except IndexError:
-			pass
-		else:
-			if data_creare == str(last_added_price[1]):
-				logging.info('Skip update "%s" Price already updated today', produs[3])
-				print(f'[INFO] Skip update {produs[3]} Price already updated today')
-				continue
+		except:
+			last_added_price = (0, 0)
+		
+		if data_creare == str(last_added_price[1]):
+			logging.info('Skip update "%s" Price already updated today', produs[3])
+			print(f'[INFO] Skip update {produs[3]} Price already updated today')
+			continue
 
 		try:
 			new_price = parse_price(produs[1], produs[2])

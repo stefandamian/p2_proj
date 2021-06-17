@@ -8,7 +8,7 @@ import time
 class ExceptionParseFail(Exception):
 	def __init__(self, url, message="The parsing has failed. site: X"):
 		self.url = url
-		self.message = message.replace('X', url)
+		self.message = '[ERROR] ' + message.replace('X', url)
 		super().__init__(self.message)
 
 class Parser(ABC):	
@@ -58,7 +58,7 @@ class Parser(ABC):
 		request_done = False
 		no_time = 0
 		if self.site == 'emag':
-			time.sleep(8)
+			time.sleep(10)
 		while((not request_done) and (no_time < 2)):
 			try:
 				req = Request(self.get_url(), headers={'User-Agent': 'Mozilla/5.0'})

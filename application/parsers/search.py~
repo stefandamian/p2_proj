@@ -38,9 +38,9 @@ def search(name, site):
                     no_time = no_time + 1
                     print('failed to get request, will try again, url- '+ url)
             if not request_done:
-                print(f'[ERROR] {url} could not be resolved')
+                print(f'error: {url} could not be resolved')
             if web.getcode() != 200:
-                raise Exception(f'[ERROR] {web.getcode()}')
+                raise Exception(f'error: {web.getcode()}')
     
             soup = BeautifulSoup(web.read(), 'html.parser')
 	

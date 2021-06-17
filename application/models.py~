@@ -35,7 +35,7 @@ class Produs(models.Model):
 		return None if preturi == None else preturi[-1] 
 	
 	def __str__(self):
-		return f"Produs({self.nume[:25]})"
+		return f"Produs({self.nume[:15]}, {self.data_creare})"
 		
 class Pret(models.Model):
 	produs = models.ForeignKey(Produs, on_delete=models.CASCADE)

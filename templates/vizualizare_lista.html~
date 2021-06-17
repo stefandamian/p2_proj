@@ -9,13 +9,15 @@
 		<h1>{{lista.name|capitalize}}</h1>
 	</div>
 	<div class = "container-fluid row">
-	<div class = "container-fluid col-md-5">
+	<div class = "container-fluid col-md-6">
 	  <table class="table table-bordered table-sm">
 							<thead>
 								<tr>
 									<th>#</th>
 									<th>Produs</th>
-									<th>Link produs</th>
+									<th>Pret Initial</th>
+									<th>Pret Curent</th>
+									<th>Link produs</th>					
 								</tr>
 							</thead>
 				<tbody>
@@ -28,7 +30,9 @@
 						<td>{{forloop.counter}}</td>
 						<td>
                   	<a>{{produs.nume|capitalize}}</a>
-						</td>						
+						</td>	
+						<td><div id="pret_initial{{forloop.counter}}">{{produs|pret_initial|valoare}}</div></td>
+                  <td><div><div id="pret_final{{forloop.counter}}">{{produs|pret_final|valoare}}</div> <div id="status{{forloop.counter}}"></div></div></td>					
 						<td>
                   	<a href="{{produs.url}}">{{produs.site}}</a>
                   </td>
@@ -49,6 +53,32 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
+String.prototype.format = function () {
+  var args = arguments;
+  return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
+};
+
+   for (var i = 1; i <= {{lista.produse|length}}; i++){
+   	var stat = (1 - (parseFloat($("#pret_final" + String(i)).text()) / parseFloat($("#pret_initial" + String(i)).text())))*100
+		console.log($("#pret_final" + String(i)).text())
+		console.log($("#pret_initial" + String(i)).text())   
+		stat = -stat;
+		stat = stat.toFixed(2);
+   	if (stat > 0){
+   	   $("#status" + String(i)).html("+"+String(stat)+"%");
+   	   $("#status" + String(i)).css('color', 'red');
+   	   console.log("gigel");
+   	}
+   	if (stat < 0){
+   	   $("#status" + String(i)).html(String(stat)+"%");
+   	   $("#status" + String(i)).css('color', 'green');
+   	   console.log("costel");
+   	}
+   	console.log(stat);
+   
+   }
+	
 	$(function () {
 		var my_colors = ['#4dc9f6', '#f67019', '#f53794', '#537bc4',
 		  '#acc236', '#166a8f', '#00a950', '#58595b', '#8549ba'];

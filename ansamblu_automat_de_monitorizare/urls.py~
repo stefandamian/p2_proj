@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from application.views import logout_view, home_view, preturi_lista_chart, produse_view, add_lista_view, show_lista_view, show_produs_view, preturi_chart
 from django.contrib.auth import views as auth_views
+print(auth_views.LoginView.__dict__)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

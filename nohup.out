@@ -1,0 +1,660 @@
+failed to get request, will try again, url- https://www.cel.ro/telefoane-mobile/telefon-mobil-samsung-galaxy-s21-pluss-g996-256gb-dual-sim-5g-phantom-violet-pMiEyNTUsNg-l/
+failed to get request, will try again, url- https://www.cel.ro/telefoane-mobile/telefon-mobil-samsung-galaxy-s21-pluss-g996-256gb-dual-sim-5g-phantom-violet-pMiEyNTUsNg-l/
+Traceback (most recent call last):
+  File "get_prices.py", line 41, in <module>
+    schedule.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 780, in run_pending
+    default_scheduler.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 100, in run_pending
+    self._run_job(job)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 172, in _run_job
+    ret = job.run()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 661, in run
+    ret = self.job_func()
+  File "get_prices.py", line 26, in job
+    new_price = parse_price(produs[1], produs[2])
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/parsers/parser.py", line 142, in parse_price
+    return my_parser.parse_price()
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/parsers/parser.py", line 66, in parse_price
+    raise Exception(f'error: {self.get_url()} could not be resolved')
+Exception: error: https://www.cel.ro/telefoane-mobile/telefon-mobil-samsung-galaxy-s21-pluss-g996-256gb-dual-sim-5g-phantom-violet-pMiEyNTUsNg-l/ could not be resolved
+Traceback (most recent call last):
+  File "get_prices.py", line 41, in <module>
+    schedule.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 780, in run_pending
+    default_scheduler.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 100, in run_pending
+    self._run_job(job)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 172, in _run_job
+    ret = job.run()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 661, in run
+    ret = self.job_func()
+  File "get_prices.py", line 20, in job
+    mycursor = mydb.cursor()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/mysql/connector/connection.py", line 1016, in cursor
+    raise errors.OperationalError("MySQL Connection not available.")
+mysql.connector.errors.OperationalError: MySQL Connection not available.
+  File "get_prices.py", line 27
+    mycursor.execute(f"INSERT INTO application_pret (valoare, produs_id, data_creare) Values ({new_price}, {produs[0]}, '{data_creare}')")
+                                                                                                                                        ^
+SyntaxError: invalid syntax
+  File "get_prices.py", line 27
+    mycursor.execute(f"INSERT INTO application_pret (valoare, produs_id, data_creare) Values ({new_price}, {produs[0]}, '{data_creare}')")
+                                                                                                                                        ^
+SyntaxError: invalid syntax
+[INFO] start get_prices.py
+[INFO] start django server
+Watching for file changes with StatReloader
+[05/Jun/2021 17:57:12] "GET /produse/ HTTP/1.1" 200 52000
+[05/Jun/2021 17:57:17] "GET /accounts/logout/ HTTP/1.1" 302 0
+[05/Jun/2021 17:57:18] "GET / HTTP/1.1" 302 0
+[05/Jun/2021 17:57:18] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+[05/Jun/2021 17:57:33] "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+[05/Jun/2021 17:57:33] "GET / HTTP/1.1" 200 2228
+[05/Jun/2021 17:57:35] "GET /produse/ HTTP/1.1" 200 1401
+[05/Jun/2021 17:57:38] "GET /produse/ HTTP/1.1" 200 1401
+[05/Jun/2021 17:57:49] "GET / HTTP/1.1" 200 2228
+[05/Jun/2021 17:58:11] "GET /search?name=macbook HTTP/1.1" 301 0
+[05/Jun/2021 17:58:34] "GET /search/?name=macbook HTTP/1.1" 200 22901
+[05/Jun/2021 17:59:37] "POST /search/?name=macbook HTTP/1.1" 302 0
+[05/Jun/2021 17:59:37] "GET /produse/ HTTP/1.1" 200 9726
+[05/Jun/2021 17:59:43] "GET /lista/15 HTTP/1.1" 200 8499
+[05/Jun/2021 17:59:44] "GET /produs/lista/15/ HTTP/1.1" 200 519
+[05/Jun/2021 17:59:50] "GET / HTTP/1.1" 200 2228
+[05/Jun/2021 18:00:50] "GET /accounts/logout/ HTTP/1.1" 302 0
+[05/Jun/2021 18:00:50] "GET / HTTP/1.1" 302 0
+[05/Jun/2021 18:00:50] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+[05/Jun/2021 18:02:07] "GET /admin/ HTTP/1.1" 302 0
+[05/Jun/2021 18:02:07] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 2194
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb465a6f0>, 'get_success_url': <function LoginView.get_success_url at 0xb465a6a8>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb465a858>, 'get_form_class': <function LoginView.get_form_class at 0xb465a810>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb465a8a0>, 'form_valid': <function LoginView.form_valid at 0xb465a8e8>, 'get_context_data': <function LoginView.get_context_data at 0xb465a930>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 17:57:08
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+[INFO] Searching products on https://www.cel.ro/cauta/macbook
+[INFO] Searching products on https://www.flanco.ro/catalogsearch/result/?q=macbook
+[INFO] Searching products on https://www.emag.ro/search/macbook
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb45fb6f0>, 'get_success_url': <function LoginView.get_success_url at 0xb45fb6a8>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb45fb858>, 'get_form_class': <function LoginView.get_form_class at 0xb45fb810>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb45fb8a0>, 'form_valid': <function LoginView.form_valid at 0xb45fb8e8>, 'get_context_data': <function LoginView.get_context_data at 0xb45fb930>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:07:13
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+[05/Jun/2021 18:07:28] "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+[05/Jun/2021 18:07:29] "GET /admin/ HTTP/1.1" 200 7557
+[05/Jun/2021 18:07:35] "GET /admin/application/lista/ HTTP/1.1" 200 9375
+[05/Jun/2021 18:07:35] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb467b6f0>, 'get_success_url': <function LoginView.get_success_url at 0xb467b6a8>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb467b858>, 'get_form_class': <function LoginView.get_form_class at 0xb467b810>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb467b8a0>, 'form_valid': <function LoginView.form_valid at 0xb467b8e8>, 'get_context_data': <function LoginView.get_context_data at 0xb467b930>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:07:22
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+[05/Jun/2021 18:10:36] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00')
+[05/Jun/2021 18:10:36] "    c                           " 400 -
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb467c7c8>, 'get_success_url': <function LoginView.get_success_url at 0xb467c780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb467c930>, 'get_form_class': <function LoginView.get_form_class at 0xb467c8e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb467c978>, 'form_valid': <function LoginView.form_valid at 0xb467c9c0>, 'get_context_data': <function LoginView.get_context_data at 0xb467ca08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:10:13
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb45bc7c8>, 'get_success_url': <function LoginView.get_success_url at 0xb45bc780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb45bc930>, 'get_form_class': <function LoginView.get_form_class at 0xb45bc8e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb45bc978>, 'form_valid': <function LoginView.form_valid at 0xb45bc9c0>, 'get_context_data': <function LoginView.get_context_data at 0xb45bca08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:10:48
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb46797c8>, 'get_success_url': <function LoginView.get_success_url at 0xb4679780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb4679930>, 'get_form_class': <function LoginView.get_form_class at 0xb46798e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb4679978>, 'form_valid': <function LoginView.form_valid at 0xb46799c0>, 'get_context_data': <function LoginView.get_context_data at 0xb4679a08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:11:56
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb45bb7c8>, 'get_success_url': <function LoginView.get_success_url at 0xb45bb780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb45bb930>, 'get_form_class': <function LoginView.get_form_class at 0xb45bb8e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb45bb978>, 'form_valid': <function LoginView.form_valid at 0xb45bb9c0>, 'get_context_data': <function LoginView.get_context_data at 0xb45bba08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:12:18
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb467b7c8>, 'get_success_url': <function LoginView.get_success_url at 0xb467b780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb467b930>, 'get_form_class': <function LoginView.get_form_class at 0xb467b8e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb467b978>, 'form_valid': <function LoginView.form_valid at 0xb467b9c0>, 'get_context_data': <function LoginView.get_context_data at 0xb467ba08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:12:25
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb45b87c8>, 'get_success_url': <function LoginView.get_success_url at 0xb45b8780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb45b8930>, 'get_form_class': <function LoginView.get_form_class at 0xb45b88e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb45b8978>, 'form_valid': <function LoginView.form_valid at 0xb45b89c0>, 'get_context_data': <function LoginView.get_context_data at 0xb45b8a08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:13:13
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+[05/Jun/2021 18:14:15] "GET /admin/ HTTP/1.1" 200 7557
+[05/Jun/2021 18:14:18] "GET /admin/application/lista/ HTTP/1.1" 200 9375
+[05/Jun/2021 18:14:18] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[05/Jun/2021 18:14:22] "GET /admin/application/lista/14/change/ HTTP/1.1" 200 7624
+[05/Jun/2021 18:14:22] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[05/Jun/2021 18:14:37] "GET /admin/auth/user/add/?_to_field=id&_popup=1 HTTP/1.1" 200 4601
+[05/Jun/2021 18:14:37] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[05/Jun/2021 18:14:54] "GET /admin/application/lista/14/history/ HTTP/1.1" 200 4505
+[05/Jun/2021 18:14:58] "GET /admin/application/lista/14/change/ HTTP/1.1" 200 7624
+[05/Jun/2021 18:14:58] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[05/Jun/2021 18:15:00] "GET /admin/application/lista/ HTTP/1.1" 200 9375
+[05/Jun/2021 18:15:00] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb47557c8>, 'get_success_url': <function LoginView.get_success_url at 0xb4755780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb4755930>, 'get_form_class': <function LoginView.get_form_class at 0xb47558e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb4755978>, 'form_valid': <function LoginView.form_valid at 0xb47559c0>, 'get_context_data': <function LoginView.get_context_data at 0xb4755a08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:14:09
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb47537c8>, 'get_success_url': <function LoginView.get_success_url at 0xb4753780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb4753930>, 'get_form_class': <function LoginView.get_form_class at 0xb47538e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb4753978>, 'form_valid': <function LoginView.form_valid at 0xb47539c0>, 'get_context_data': <function LoginView.get_context_data at 0xb4753a08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:17:27
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb477c7c8>, 'get_success_url': <function LoginView.get_success_url at 0xb477c780>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb477c930>, 'get_form_class': <function LoginView.get_form_class at 0xb477c8e8>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb477c978>, 'form_valid': <function LoginView.form_valid at 0xb477c9c0>, 'get_context_data': <function LoginView.get_context_data at 0xb477ca08>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:17:38
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb474e810>, 'get_success_url': <function LoginView.get_success_url at 0xb474e7c8>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb474e978>, 'get_form_class': <function LoginView.get_form_class at 0xb474e930>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb474e9c0>, 'form_valid': <function LoginView.form_valid at 0xb474ea08>, 'get_context_data': <function LoginView.get_context_data at 0xb474ea50>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:20:37
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/admin.py changed, reloading.
+Performing system checks...
+
+{'__module__': 'django.contrib.auth.views', '__doc__': '\n    Display the login form and handle the login action.\n    ', 'form_class': <class 'django.contrib.auth.forms.AuthenticationForm'>, 'authentication_form': None, 'redirect_field_name': 'next', 'template_name': 'registration/login.html', 'redirect_authenticated_user': False, 'extra_context': None, 'dispatch': <function LoginView.dispatch at 0xb4751810>, 'get_success_url': <function LoginView.get_success_url at 0xb47517c8>, 'get_redirect_url': <function LoginView.get_redirect_url at 0xb4751978>, 'get_form_class': <function LoginView.get_form_class at 0xb4751930>, 'get_form_kwargs': <function LoginView.get_form_kwargs at 0xb47519c0>, 'form_valid': <function LoginView.form_valid at 0xb4751a08>, 'get_context_data': <function LoginView.get_context_data at 0xb4751a50>}
+System check identified no issues (0 silenced).
+June 05, 2021 - 18:20:45
+Django version 3.1.7, using settings 'ansamblu_automat_de_monitorizare.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+Traceback (most recent call last):
+  File "get_prices.py", line 41, in <module>
+    schedule.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 780, in run_pending
+    default_scheduler.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 100, in run_pending
+    self._run_job(job)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 172, in _run_job
+    ret = job.run()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 661, in run
+    ret = self.job_func()
+  File "get_prices.py", line 20, in job
+    mycursor = mydb.cursor()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/mysql/connector/connection.py", line 1016, in cursor
+    raise errors.OperationalError("MySQL Connection not available.")
+mysql.connector.errors.OperationalError: MySQL Connection not available.
+[INFO] start get_prices.py
+[INFO] start django server
+Watching for file changes with StatReloader
+[07/Jun/2021 16:27:26] "GET /produse/ HTTP/1.1" 200 12392
+[07/Jun/2021 16:27:40] "GET /accounts/logout/ HTTP/1.1" 302 0
+[07/Jun/2021 16:27:40] "GET / HTTP/1.1" 302 0
+[07/Jun/2021 16:27:40] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+[07/Jun/2021 16:27:46] "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+[07/Jun/2021 16:27:46] "GET / HTTP/1.1" 200 2317
+[07/Jun/2021 16:27:49] "GET /produse/ HTTP/1.1" 200 49328
+[07/Jun/2021 16:29:15] "GET /produse/ HTTP/1.1" 200 49328
+[07/Jun/2021 16:29:16] "GET / HTTP/1.1" 200 2317
+[07/Jun/2021 17:25:13] "GET / HTTP/1.1" 302 0
+[07/Jun/2021 18:42:08] "GET / HTTP/1.1" 302 0
+[07/Jun/2021 18:42:08] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+[07/Jun/2021 19:15:56] code 400, message Bad request version ('OÑËÜ®Ëd')
+[07/Jun/2021 19:15:56] "   TZ         .    I¨À )z» zÚf Ò~Uñi»©                ÃÐ¢|¦v½óOÑËÜ®Ëd" 400 -
+[07/Jun/2021 19:50:08] "GET /produse/ HTTP/1.1" 200 49328
+[07/Jun/2021 19:50:22] "GET /admin HTTP/1.1" 301 0
+[07/Jun/2021 19:50:23] "GET /admin/ HTTP/1.1" 200 7580
+[07/Jun/2021 19:50:23] "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+[07/Jun/2021 19:50:27] "GET /admin/application/lista/ HTTP/1.1" 200 10085
+[07/Jun/2021 19:50:27] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[07/Jun/2021 19:50:42] "GET /admin/application/pret/ HTTP/1.1" 200 40926
+[07/Jun/2021 19:50:43] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[07/Jun/2021 19:57:21] "GET / HTTP/1.0" 302 0
+[07/Jun/2021 19:58:49] "GET / HTTP/1.1" 302 0
+[07/Jun/2021 22:48:01] code 400, message Bad HTTP/0.9 request type ('Z¥\x01')
+[07/Jun/2021 22:48:01] "Z¥     " 400 -
+----------------------------------------
+Exception happened during processing of request from ('89.248.165.6', 48904)
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/socketserver.py", line 650, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.7/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.7/socketserver.py", line 720, in __init__
+    self.handle()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 172, in handle
+    self.handle_one_request()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[08/Jun/2021 04:13:26] code 400, message Bad request version ('À\x14À')
+[08/Jun/2021 04:13:26] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[08/Jun/2021 04:13:27] "GET / HTTP/1.1" 302 0
+[08/Jun/2021 04:13:28] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+Not Found: /common/info.cgi
+[08/Jun/2021 04:13:28] "GET /common/info.cgi HTTP/1.1" 404 3324
+Not Found: /HNAP1/
+[08/Jun/2021 04:13:29] "GET /HNAP1/ HTTP/1.1" 404 3297
+Not Found: /currentsetting.htm
+[08/Jun/2021 04:13:30] "GET /currentsetting.htm HTTP/1.1" 404 3333
+Not Found: /dniapi/userInfos
+[08/Jun/2021 04:13:31] "GET /dniapi/userInfos HTTP/1.1" 404 3327
+[08/Jun/2021 05:02:30] code 400, message Bad request version ('F\x07\x00tsXrcsXYs9\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00bbXcsXctst\x00\x00\x00\x00\x00\x00')
+[08/Jun/2021 05:02:30] "   TZ          0I    ¨À )t F tsXrcsXYs9                      bbXcsXctst      " 400 -
+[08/Jun/2021 07:53:54] "GET / HTTP/1.1" 302 0
+[08/Jun/2021 07:53:54] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+[08/Jun/2021 07:54:19] "GET / HTTP/1.1" 302 0
+----------------------------------------
+Exception happened during processing of request from ('162.142.125.128', 23894)
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/socketserver.py", line 650, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.7/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.7/socketserver.py", line 720, in __init__
+    self.handle()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 174, in handle
+    self.handle_one_request()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[08/Jun/2021 08:47:37] "GET / HTTP/1.1" 302 0
+[08/Jun/2021 10:24:00] "GET / HTTP/1.1" 200 2317
+Not Found: /favicon.ico
+[08/Jun/2021 10:24:01] "GET /favicon.ico HTTP/1.1" 404 3326
+[08/Jun/2021 10:24:04] "GET /produse/ HTTP/1.1" 200 49328
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 12:37:50] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 12:45:01] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 12:47:03] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 12:56:45] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 13:17:31] "GET http://example.com/ HTTP/1.1" 400 64599
+[08/Jun/2021 13:20:39] "GET / HTTP/1.1" 200 2317
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 13:22:33] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 13:31:59] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 13:41:39] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:01:07] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:03:59] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:19:24] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:20:09] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:23:02] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:23:37] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:28:00] "GET http://example.com/ HTTP/1.1" 400 64599
+Invalid HTTP_HOST header: 'example.com'. You may need to add 'example.com' to ALLOWED_HOSTS.
+Bad Request: /http:/example.com/
+[08/Jun/2021 14:36:19] "GET http://example.com/ HTTP/1.1" 400 64599
+[08/Jun/2021 14:47:25] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[08/Jun/2021 14:47:25] "  /*à     Cookie: mstshash=Administr" 400 -
+[08/Jun/2021 18:16:33] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[08/Jun/2021 18:16:33] "  /*à     Cookie: mstshash=Administr" 400 -
+[08/Jun/2021 18:39:08] code 400, message Bad HTTP/0.9 request type ('Z¥\x01')
+[08/Jun/2021 18:39:08] "Z¥     " 400 -
+[08/Jun/2021 19:44:13] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00')
+[08/Jun/2021 19:44:13] "    c                           " 400 -
+[08/Jun/2021 21:49:21] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[08/Jun/2021 21:49:21] "  /*à     Cookie: mstshash=Administr" 400 -
+[08/Jun/2021 22:30:19] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[08/Jun/2021 22:30:19] "  /*à     Cookie: mstshash=Administr" 400 -
+failed to get request, will try again, url- https://www.cel.ro/telefoane-mobile/telefon-mobil-samsung-galaxy-s21-pluss-g996-256gb-dual-sim-5g-phantom-violet-pMiEyNTUsNg-l/
+Traceback (most recent call last):
+  File "get_prices.py", line 42, in <module>
+    schedule.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 780, in run_pending
+    default_scheduler.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 100, in run_pending
+    self._run_job(job)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 172, in _run_job
+    ret = job.run()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 661, in run
+    ret = self.job_func()
+  File "get_prices.py", line 20, in job
+    mycursor = mydb.cursor()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/mysql/connector/connection.py", line 1016, in cursor
+    raise errors.OperationalError("MySQL Connection not available.")
+mysql.connector.errors.OperationalError: MySQL Connection not available.
+[08/Jun/2021 23:12:05] "GET / HTTP/1.1" 302 0
+[08/Jun/2021 23:12:05] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+----------------------------------------
+Exception happened during processing of request from ('162.142.125.39', 43874)
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/socketserver.py", line 650, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.7/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.7/socketserver.py", line 720, in __init__
+    self.handle()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 172, in handle
+    self.handle_one_request()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[08/Jun/2021 23:38:28] "GET / HTTP/1.1" 302 0
+----------------------------------------
+Exception happened during processing of request from ('162.142.125.39', 44748)
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/socketserver.py", line 650, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.7/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.7/socketserver.py", line 720, in __init__
+    self.handle()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 174, in handle
+    self.handle_one_request()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/servers/basehttp.py", line 182, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[08/Jun/2021 23:38:29] "GET / HTTP/1.1" 302 0
+[08/Jun/2021 23:38:29] "GET /accounts/login/ HTTP/1.1" 200 1957
+[09/Jun/2021 02:44:09] "GET / HTTP/1.1" 302 0
+[09/Jun/2021 11:31:08] "GET / HTTP/1.1" 302 0
+[09/Jun/2021 11:31:09] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+[09/Jun/2021 11:31:09] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+Not Found: /favicon.ico
+[09/Jun/2021 11:31:10] "GET /favicon.ico HTTP/1.1" 404 3326
+[09/Jun/2021 11:31:17] "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+[09/Jun/2021 11:31:17] "GET / HTTP/1.1" 200 2317
+[09/Jun/2021 11:31:22] "GET /produse/ HTTP/1.1" 200 49328
+Traceback (most recent call last):
+  File "get_prices.py", line 42, in <module>
+    schedule.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 780, in run_pending
+    default_scheduler.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 100, in run_pending
+    self._run_job(job)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 172, in _run_job
+    ret = job.run()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 661, in run
+    ret = self.job_func()
+  File "get_prices.py", line 20, in job
+    mycursor = mydb.cursor()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/mysql/connector/connection.py", line 1016, in cursor
+    raise errors.OperationalError("MySQL Connection not available.")
+mysql.connector.errors.OperationalError: MySQL Connection not available.
+[WARNING] get_prices.py already running
+[INFO] start django server
+Watching for file changes with StatReloader
+[10/Jun/2021 10:27:20] "GET / HTTP/1.1" 302 0
+[10/Jun/2021 10:27:20] "GET /accounts/login/?next=/ HTTP/1.1" 200 1958
+[10/Jun/2021 10:27:20] "GET /static/admin/css/login.css HTTP/1.1" 200 1185
+[10/Jun/2021 10:27:20] "GET /static/admin/css/base.css HTTP/1.1" 200 16307
+[10/Jun/2021 10:27:20] "GET /static/admin/css/responsive.css HTTP/1.1" 200 18344
+[10/Jun/2021 10:27:20] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[10/Jun/2021 10:27:20] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[10/Jun/2021 10:27:20] "GET /static/admin/img/icon-alert.svg HTTP/1.1" 200 504
+[10/Jun/2021 10:27:20] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[10/Jun/2021 10:27:20] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+[10/Jun/2021 10:27:20] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+[10/Jun/2021 10:27:20] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[10/Jun/2021 10:27:20] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[10/Jun/2021 10:27:20] "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+[10/Jun/2021 10:27:20] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+[10/Jun/2021 10:27:20] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+Not Found: /favicon.ico
+[10/Jun/2021 10:27:20] "GET /favicon.ico HTTP/1.1" 404 3312
+[10/Jun/2021 10:27:20] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[10/Jun/2021 10:27:20] "GET /static/admin/img/tooltag-arrowright.svg HTTP/1.1" 200 280
+[10/Jun/2021 10:27:28] "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+[10/Jun/2021 10:27:28] "GET / HTTP/1.1" 200 2317
+[10/Jun/2021 10:27:28] "GET /static/style.css HTTP/1.1" 200 138
+[10/Jun/2021 10:27:31] "GET /produse HTTP/1.1" 301 0
+[10/Jun/2021 10:27:32] "GET /produse/ HTTP/1.1" 200 49328
+[10/Jun/2021 10:45:00] "GET /produse/ HTTP/1.1" 200 49370
+[10/Jun/2021 10:45:11] "GET /lista/5 HTTP/1.1" 200 5924
+[10/Jun/2021 10:45:12] "GET /produs/lista/5/ HTTP/1.1" 200 630
+[10/Jun/2021 10:45:40] "GET /produse/ HTTP/1.1" 200 49370
+[10/Jun/2021 10:45:46] "GET / HTTP/1.1" 200 2317
+[10/Jun/2021 10:46:10] "GET /admin HTTP/1.1" 301 0
+[10/Jun/2021 10:46:10] "GET /admin/ HTTP/1.1" 200 7580
+[10/Jun/2021 10:46:10] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 380
+[10/Jun/2021 10:46:10] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2138
+[10/Jun/2021 10:46:10] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 1360
+[10/Jun/2021 10:46:10] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+[10/Jun/2021 10:46:37] "GET /admin/auth/user/add/ HTTP/1.1" 200 7992
+[10/Jun/2021 10:46:37] "GET /static/admin/css/forms.css HTTP/1.1" 200 8423
+[10/Jun/2021 10:46:37] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[10/Jun/2021 10:46:37] "GET /static/admin/js/actions.js HTTP/1.1" 200 6783
+[10/Jun/2021 10:46:37] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[10/Jun/2021 10:46:37] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6078
+[10/Jun/2021 10:46:37] "GET /static/admin/js/core.js HTTP/1.1" 200 5418
+[10/Jun/2021 10:46:37] "GET /static/admin/css/widgets.css HTTP/1.1" 200 10592
+[10/Jun/2021 10:46:37] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 287630
+[10/Jun/2021 10:46:37] "GET /static/admin/js/urlify.js HTTP/1.1" 200 8632
+[10/Jun/2021 10:46:37] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[10/Jun/2021 10:46:37] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 492
+[10/Jun/2021 10:46:37] "GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+[10/Jun/2021 10:46:37] "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+[10/Jun/2021 10:46:37] "GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+[10/Jun/2021 10:46:37] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+[10/Jun/2021 10:46:37] "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+[10/Jun/2021 10:46:37] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+[10/Jun/2021 10:46:37] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[10/Jun/2021 10:46:37] "GET /static/admin/img/calendar-icons.svg HTTP/1.1" 200 1094
+[10/Jun/2021 10:46:37] "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 560
+[10/Jun/2021 10:46:37] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[10/Jun/2021 10:46:37] "GET /admin/auth/user/img/icon-addlink.svg HTTP/1.1" 301 0
+[10/Jun/2021 10:46:37] "GET /admin/auth/user/img/icon-addlink.svg/ HTTP/1.1" 302 0
+[10/Jun/2021 10:46:37] "GET /admin/auth/user/img/icon-addlink.svg/change/ HTTP/1.1" 302 0
+[10/Jun/2021 10:46:37] "GET /admin/ HTTP/1.1" 200 7766
+[10/Jun/2021 10:47:23] "POST /admin/auth/user/add/ HTTP/1.1" 200 8193
+[10/Jun/2021 10:47:23] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[10/Jun/2021 10:47:24] "GET /admin/auth/user/img/icon-addlink.svg/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:24] "GET /admin/auth/user/img/icon-addlink.svg/change/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:24] "GET /admin/ HTTP/1.1" 200 7766
+[10/Jun/2021 10:47:42] "POST /admin/auth/user/add/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:42] "GET /admin/auth/user/7/change/ HTTP/1.1" 200 17118
+[10/Jun/2021 10:47:42] "GET /static/admin/js/calendar.js HTTP/1.1" 200 7788
+[10/Jun/2021 10:47:42] "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4257
+[10/Jun/2021 10:47:42] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19750
+[10/Jun/2021 10:47:42] "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 12350
+[10/Jun/2021 10:47:42] "GET /admin/jsi18n/ HTTP/1.1" 200 3187
+[10/Jun/2021 10:47:42] "GET /admin/auth/user/7/img/icon-addlink.svg HTTP/1.1" 301 0
+[10/Jun/2021 10:47:42] "GET /admin/auth/user/7/img/icon-yes.svg HTTP/1.1" 301 0
+[10/Jun/2021 10:47:42] "GET /admin/auth/user/7/img/icon-yes.svg/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:42] "GET /admin/auth/user/7/img/icon-addlink.svg/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:42] "GET /admin/auth/user/7/img/icon-yes.svg/change/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:42] "GET /admin/auth/user/7/img/icon-addlink.svg/change/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:42] "GET /admin/ HTTP/1.1" 200 7762
+[10/Jun/2021 10:47:42] "GET /admin/ HTTP/1.1" 200 7762
+[10/Jun/2021 10:47:55] "GET /produse/ HTTP/1.1" 302 0
+[10/Jun/2021 10:47:55] "GET /accounts/login/?next=/produse/ HTTP/1.1" 200 1966
+[10/Jun/2021 10:47:55] "GET /static/admin/css/login.css HTTP/1.1" 200 1185
+[10/Jun/2021 10:47:55] "GET /static/admin/css/base.css HTTP/1.1" 200 16307
+[10/Jun/2021 10:47:55] "GET /static/admin/css/responsive.css HTTP/1.1" 200 18344
+[10/Jun/2021 10:47:55] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+Not Found: /favicon.ico
+[10/Jun/2021 10:47:55] "GET /favicon.ico HTTP/1.1" 404 3326
+[10/Jun/2021 10:47:55] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+[10/Jun/2021 10:47:56] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+[10/Jun/2021 10:48:09] code 400, message Bad request version ('À\x14À')
+[10/Jun/2021 10:48:09] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Jun/2021 10:48:10] "POST /accounts/login/?next=/produse/ HTTP/1.1" 302 0
+[10/Jun/2021 10:48:10] "GET /produse/ HTTP/1.1" 200 1401
+[10/Jun/2021 10:48:10] "GET /static/style.css HTTP/1.1" 200 138
+[10/Jun/2021 10:48:14] "GET /produse HTTP/1.1" 301 0
+[10/Jun/2021 10:48:14] "GET /produse/ HTTP/1.1" 200 1401
+[10/Jun/2021 10:48:15] "GET / HTTP/1.1" 200 2228
+[10/Jun/2021 10:48:28] "GET /search?name=Samsung+s10+plus+negru HTTP/1.1" 301 0
+Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/contrib/auth/decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/views.py", line 37, in add_lista_view
+    list_of_links = search(name, site)
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/parsers/search.py", line 40, in search
+    raise Exception(f'error: {url} could not be resolved')
+Exception: error: https://www.emag.ro/search/samsung%20s10%20plus%20negru could not be resolved
+[10/Jun/2021 10:48:49] "GET /search/?name=Samsung+s10+plus+negru HTTP/1.1" 500 78636
+[10/Jun/2021 10:49:29] "GET /search?name=Samsung+galaxy+s10+ HTTP/1.1" 301 0
+Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/contrib/auth/decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/views.py", line 37, in add_lista_view
+    list_of_links = search(name, site)
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/parsers/search.py", line 40, in search
+    raise Exception(f'error: {url} could not be resolved')
+Exception: error: https://www.emag.ro/search/samsung%20galaxy%20s10 could not be resolved
+[10/Jun/2021 10:49:48] "GET /search/?name=Samsung+galaxy+s10+ HTTP/1.1" 500 78124
+[10/Jun/2021 10:50:20] "GET / HTTP/1.1" 200 2228
+[10/Jun/2021 10:50:28] "GET /search?name=telefon HTTP/1.1" 301 0
+[10/Jun/2021 10:50:40] "GET / HTTP/1.1" 200 2317
+Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/django/contrib/auth/decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/views.py", line 37, in add_lista_view
+    list_of_links = search(name, site)
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/parsers/search.py", line 40, in search
+    raise Exception(f'error: {url} could not be resolved')
+Exception: error: https://www.emag.ro/search/telefon could not be resolved
+[10/Jun/2021 10:50:50] "GET /search/?name=telefon HTTP/1.1" 500 77261
+Traceback (most recent call last):
+  File "get_prices.py", line 43, in <module>
+    schedule.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 780, in run_pending
+    default_scheduler.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 100, in run_pending
+    self._run_job(job)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 172, in _run_job
+    ret = job.run()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 661, in run
+    ret = self.job_func()
+  File "get_prices.py", line 19, in job
+    mycursor = mydb.cursor()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/mysql/connector/connection.py", line 1016, in cursor
+    raise errors.OperationalError("MySQL Connection not available.")
+mysql.connector.errors.OperationalError: MySQL Connection not available.
+failed to get request, will try again, url- https://www.cel.ro/telefoane-mobile/telefon-mobil-samsung-galaxy-s21-pluss-g996-256gb-dual-sim-5g-phantom-violet-pMiEyNTUsNg-l/
+failed to get request, will try again, url- https://www.cel.ro/telefoane-mobile/telefon-mobil-samsung-galaxy-s21-pluss-g996-256gb-dual-sim-5g-phantom-violet-pMiEyNTUsNg-l/
+Traceback (most recent call last):
+  File "get_prices.py", line 43, in <module>
+    schedule.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 780, in run_pending
+    default_scheduler.run_pending()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 100, in run_pending
+    self._run_job(job)
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 172, in _run_job
+    ret = job.run()
+  File "/home/pi/Desktop/p2/lib/python3.7/site-packages/schedule/__init__.py", line 661, in run
+    ret = self.job_func()
+  File "get_prices.py", line 25, in job
+    new_price = parse_price(produs[1], produs[2])
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/parsers/parser.py", line 142, in parse_price
+    return my_parser.parse_price()
+  File "/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare/application/parsers/parser.py", line 66, in parse_price
+    raise Exception(f'error: {self.get_url()} could not be resolved')
+Exception: error: https://www.cel.ro/telefoane-mobile/telefon-mobil-samsung-galaxy-s21-pluss-g996-256gb-dual-sim-5g-phantom-violet-pMiEyNTUsNg-l/ could not be resolved

@@ -20,7 +20,7 @@ search_url = {
 
 validare = {
 	'emag': ('span', {'class':'title-phrasing title-phrasing-sm text-danger'}),
-	'flanco': ('div', {'class':'acc-warn'}),
+	'flanco': ('div', {'class':'message notice'}),
 	'cel': ('div', {'class':'inexistenta2027'}),
 	'mediaGalaxy': ('div', {'class':'border flex items-center text-usm p-3 rounded text-alertYellow bg-alertYellow-bg border-alertYellow-border'}),
 	'altex': ('div', {'class':'border flex items-center text-usm p-3 rounded text-alertYellow bg-alertYellow-bg border-alertYellow-border'}),
@@ -29,7 +29,9 @@ validare = {
 
 containter_produse = {
 	'emag': {'id': 'card_grid'},
-	'flanco':{'id': 'products-wrapper'},
+	'flanco':{
+		'name': 'ol', 
+		'attrs': {'class' : 'products list items product-items'}},
 	'cel': {
 		'name': 'div', 
 		'attrs': {'class':'productlisting'}},
@@ -44,7 +46,7 @@ containter_produse = {
 
 containter_produs = {
 	'emag': ('div', {'class':'card-item js-product-data'}),
-	'flanco': ('div', {'class':'produs'}),
+	'flanco': ('div', {'class':'product-item-info'}),
 	'cel': ('div', {'class':'product_data productListing-tot'}),
 	'mediaGalaxy': ('div', {'class': 'Product'}),
 	'altex': ('div', {'class': 'Product'}),
@@ -53,7 +55,7 @@ containter_produs = {
 
 link_produs = {
 	'emag': ('a', {'class': 'thumbnail-wrapper js-product-url'}),
-	'flanco': ('a', {'class': 'product-new-link'}),
+	'flanco': ('a', {'class': 'product photo product-item-photo'}),
 	'cel': ('a', {'class': 'productListing-data-b product_link product_name'}),
 	'altex': ('a', {'class': 'Product-name'}),
 	'mediaGalaxy': ('a', {'class': 'Product-name'}),

@@ -106,9 +106,9 @@ class flanco_parser(Parser):
 			return result.contents[0].strip()
 		raise ExceptionParseFail(self.url)
 	def photo(self, soup):
-		result = soup.find('img', {'class':'thumbnail', 'itemprop':'contentUrl'})
+		result = soup.find('img', {'itemprop':'thumbnail'})
 		if result != None:
-			return result['href']
+			return result['src']
 		raise ExceptionParseFail(self.url)
 	def price(self, soup):
 		result = soup.find('div', {'class': 'product-info-price'})

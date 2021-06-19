@@ -57,6 +57,8 @@ class Parser(ABC):
 	def parse_price(self):
 		request_done = False
 		no_time = 0
+		if self.site == 'emag':
+			time.sleep(2)
 		while((not request_done) and (no_time < 2)):
 			try:
 				req = Request(self.get_url(), headers={'User-Agent': 'Mozilla/5.0'})
@@ -111,14 +113,16 @@ class flanco_parser(Parser):
 	def price(self, soup):
 		result = soup.find('div', {'class': 'product-info-price'})
 		if result != None:
-			result = result.find('span', {'class':'special-price'})
+			result = result.find('div', {'class': 'price-box price-final_price'})
 			if result != None:
-				result = result.find('span', {'class':'price'})
-				return result.contents[0].replace('.', '').replace(',', '')
-			else:
-				result = soup.find('span', {'class': 'product-info-price'}).find('span', {'class':'price'})
+				result = result.find('span', {'class':'special-price'})
 				if result != None:
+					result = result.find('span', {'class':'price'})
 					return result.contents[0].replace('.', '').replace(',', '')
+				else:
+					result = soup.find('div', {'class': 'product-info-price'}).find('div', {'class': 'price-box price-final_price'}).find('span', {'class':'price'})
+					if result != None:
+						return result.contents[0].replace('.', '').replace(',', '')
 		raise ExceptionParseFail(self.url)
 			
 class cel_parser(Parser):

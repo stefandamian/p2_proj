@@ -1,16 +1,10 @@
 from django.core.management.base import BaseCommand, CommandError
-from subprocess import Popen
-import os
-import psutil
 from application.parsers.parser import parse_price, ExceptionParseFail
 import logging
 from datetime import date
 from time import sleep
 import pidfile
 from application.models import Produs, Pret, Lista
-
-
-
 
 PID_FILE = 'update_prices.pid'
 
@@ -33,7 +27,7 @@ class Command(BaseCommand):
 				with pidfile.PIDFile(PID_FILE):
 					self.stdout.write('[INFO] Process started')					
 					logging.info("Process started")
-					job()
+					self.job()
 					start_time = date.today()
 					while True:
 						if abs((date.today() - start_time).days) > 0:
@@ -56,6 +50,8 @@ class Command(BaseCommand):
 			for produs in lista_produse:
 				for pret in produs.preturi():
 					if not pret.data_creare in timeline:
+						if pret.data_creare == date.today():
+							continue
 						timeline.append(pret.data_creare)
 					
 			for produs in lista_produse:
@@ -70,7 +66,7 @@ class Command(BaseCommand):
 					if len(produs.preturi()) != len(timeline):
 						current_timeline = [pret.data_creare for pret in produs.preturi()]
 						for time in timeline:
-							if (not time in current_timeline) and (time != date.today()):
+							if not time in current_timeline:
 								Pret.objects.create(produs=produs, valoare=-1, data_creare=time)
 					Pret.objects.create(produs=produs, valoare=new_price, data_creare=date.today()) 	
 					number_of_update += 1

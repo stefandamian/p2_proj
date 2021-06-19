@@ -26,8 +26,8 @@ SECRET_KEY = '_ih+wsieylfb(2-%t(69au@=r_#a%q64&+6(hle*^)1e-76vc2'
 DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.0.102', '79.115.62.121', 'localhost', 'raspberry.stefandamian.live']
-
-
+	
+	
 # Application definition
 
 INSTALLED_APPS = [
@@ -124,3 +124,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MAIL_SENDING_DEBUG = False
+
+if MAIL_SENDING_DEBUG:
+	EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #During dev
+else:
+	EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+	EMAIL_HOST = 'smtp.gmail.com'
+	EMAIL_HOST_USER = 'raspberry.stefan.damian@gmail.com'
+	EMAIL_HOST_PASSWORD = 'gsxkzjmmjfsxsboq'
+	EMAIL_PORT = 587
+	EMAIL_USE_TLS = True
+	DEFAULT_FROM_EMAIL = 'Stefan\'s Raspberry Pi <noreply@raspberry.stefan.damian.com>'
+	
+	
+	
+	
+	

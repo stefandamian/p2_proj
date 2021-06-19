@@ -42,7 +42,7 @@
 			 </table>
 	  <form role="form" method="post" onSubmit="return confirm('Esti sigur ca vrei sa stergi lista "{{lista.name}}"?')"> {% csrf_token %}
 		 <input type="hidden" name="delete" value="true"/>
-		 <button type="submit" class="btn btn-primary float_right" style="margin-top: 8px;">Sterge Lista</button>
+		 <button type="submit" class="btn btn-primary float_right" style="margin-top: 2px; margin-bottom: 8px;">Sterge Lista</button>
 	  </form>
    </div>
    <div class="container-fluid col-md-6">
@@ -80,8 +80,10 @@ String.prototype.format = function () {
    }
 	
 	$(function () {
-		var my_colors = ['#4dc9f6', '#f67019', '#f53794', '#537bc4',
-		  '#acc236', '#166a8f', '#00a950', '#58595b', '#8549ba'];
+		var my_colors = ['#39b9d6', '#f67019', '#f53794', '#537bc4',
+		  '#acc236', '#166a8f', '#00a950', '#8549ba', '#4dff4d',
+		  '#ff80df', '#85adad', '#00e6e6', '#331a00', '#ff901a', 
+		  '#ffe6ff', '#99cc00', '#66ffff', '#ff0080'];
 		var $preturiChart = $("#preturi-chart");
       $.ajax({
         url: $preturiChart.data("url"),

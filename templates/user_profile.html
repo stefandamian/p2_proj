@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load index %}
+<div class="container">
+	<div style="margin-top:200px;"></div>
+	<h4>Staff: {% if user.is_staff %}Yes{% else %}No{% endif %}</h4>
+	<h4>Username: {{user.username}}</h4>
+	<h4>e-mail: {{user.email}}</h4>
+	<h4>Numar produse urmarite: {{number_of_products}}</h4>
+	<h4>Numar liste produse: {{number_of_lists}} </h4>
+</div>		
+{% endblock %}

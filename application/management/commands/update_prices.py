@@ -25,9 +25,8 @@ class Command(BaseCommand):
 		else:
 			try:
 				with pidfile.PIDFile(PID_FILE):
-					self.stdout.write('[INFO] Process started')					
+					self.stdout.write(f'[INFO] Process started {str(date.today())}')					
 					logging.info("Process started")
-					self.job()
 					start_time = date.today()
 					while True:
 						if abs((date.today() - start_time).days) > 0:
@@ -49,10 +48,11 @@ class Command(BaseCommand):
 			lista_produse = lista.produse()
 			for produs in lista_produse:
 				for pret in produs.preturi():
-					if not pret.data_creare in timeline:
-						if pret.data_creare == date.today():
+					pret_curent_time = pret.data_creare
+					if not pret_curent_time in timeline:
+						if pret_curent_time == date.today():
 							continue
-						timeline.append(pret.data_creare)
+						timeline.append(pret_curent_time)
 					
 			for produs in lista_produse:
 				if produs.pret_final() != None:

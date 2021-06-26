@@ -79,6 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ansamblu_automat_de_monitorizare',
+        'CONN_MAX_AGE': 3600,
         'USER': 'p2_user',
         'PASSWORD': 'qwer1234',
         'HOST': 'localhost',

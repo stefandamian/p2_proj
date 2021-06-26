@@ -1,4 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.db import connection
+from django.db.utils import OperationalError
 from application.parsers.parser import parse_price, ExceptionParseFail
 import logging
 from datetime import date
@@ -25,8 +27,8 @@ class Command(BaseCommand):
 		else:
 			try:
 				with pidfile.PIDFile(PID_FILE):
-					self.stdout.write(f'[INFO] Process started {str(date.today())}')					
 					logging.info("Process started")
+					self.stdout.write(f'[INFO] Process started {str(date.today())}')					
 					start_time = date.today()
 					while True:
 						if abs((date.today() - start_time).days) > 0:
@@ -40,7 +42,18 @@ class Command(BaseCommand):
 				self.stdout.write(self.style.WARNING('[WARNING] Already running'))
 				logging.warning("Already running")
 				
+	def ensure_connection(self):
+		db_conn = None
+		while not db_conn:
+			try:
+				connection.ensure_connection()
+				db_conn = True
+			except OperationalError:
+				self.stdout.write('Database unavailable, waiting 1 second')
+				sleep(1)
+				
 	def job(self):
+		self.ensure_connection()
 		number_of_update = 0
 		number_of_fail = 0
 		for lista in Lista.objects.all():

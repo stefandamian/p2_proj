@@ -1,0 +1,49 @@
+#!/bin/bash
+
+G_SOURCE="/home/pi/Desktop/p2/ansamblu_automat_de_monitorizare"
+G_PYTHON="/home/pi/Desktop/p2/bin/python"
+G_PID_FILE="${G_SOURCE}/daily_update.pid"
+
+start_update_prices() {
+  r=`ps aux | grep "manage.py update_prices" | grep -v grep`
+  if [[ $r = "" ]] ; 
+  then
+    if [ -a $G_PID_FILE ]; then
+        rm -f $G_PID_FILE
+    fi
+    echo "[INFO] Start daily update process"
+    nohup $G_PYTHON manage.py daily_update > daily_update.out 2>&1 &
+  else
+    echo "[WARNING] Daily update process already running"
+  fi
+}
+start_django_server() {
+  echo "[INFO] Start django server"
+  $G_PYTHON manage.py runserver 0.0.0.0:8000
+}
+
+start_get_prices_manual(){
+  $G_PYTHON manage.py update_prices
+}
+
+if [[ "$USER" != "pi" && "$USER" != "root" ]]; 
+then 
+  echo "[ERROR] Please run as pi or root"
+  exit 1
+fi
+
+cd $G_SOURCE
+
+if [ $# -eq 0 ]
+then
+  start_update_prices
+  start_django_server
+elif [ $# -eq 1 ] && [ "$1" == "update_prices" ] 
+then
+  start_get_prices_manual
+else
+  echo "[ERROR] wrong arguments"
+  exit 2
+fi
+
+

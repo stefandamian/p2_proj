@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from application.parsers.search import search, ExceptionSearchNotValid
@@ -6,11 +6,71 @@ from application.parsers.parser import parse
 from application.parsers.constants import *
 from .models import Produs, Pret, Lista
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
 
 def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/')	
+   logout(request)
+   return redirect('/')
+   
+def user_profile_view(request):
+	context = {
+		'number_of_lists': 0,
+		'number_of_products': 0,
+		'user': request.user	
+	}
+	
+	liste = Lista.objects.filter(user=request.user)
+	if len(liste) > 0:
+		context['number_of_lists'] = len(liste)
+		for l in liste:
+			context['number_of_products'] += len(l.produse())
+	
+	return render(request, 'user_profile.html', context)
+    
+def register_view(request):
+	context = {
+		"error_message": None
+		}
+	if request.method == "POST":
+		#username check
+		username = request.POST.get("username")
+		if len(User.objects.filter(username=username)) > 0:
+			context["error_message"] = f"Name \"{username}\" already used. Please try a different username."
+		if context["error_message"] != None:
+			print(context["error_message"])
+			return render(request, 'registration/register.html', context)
+		
+		#mail check
+		email = request.POST.get("email")
+		if len(User.objects.filter(email=email)) > 0:
+			context["error_message"] = f"Email \"{email}\" already used."
+		if context["error_message"] != None:
+			print(context["error_message"])
+			return render(request, 'registration/register.html', context)
+		
+		#password check	
+		password = request.POST.get("password")
+		confirm_password = request.POST.get("password")
+		if password != confirm_password:
+			context["error_message"] = "Passwords don't match"
+		if context["error_message"] != None:
+			print(context["error_message"])
+			return render(request, 'registration/register.html', context)
+		try:
+			new_user = User.objects.create_user(username=username, email=email, password=password)
+			new_user = authenticate(username=username, password=password)
+			login(request, new_user)
+			return redirect(reverse('home'))
+		except Exception as e:
+			print(e)
+			error_message = str(e)
+	
+	return render(request, 'registration/register.html', context)
+	
+def reset_password_done_view(request):
+	info_message = "Password reset completed."
+	return redirect('/')	
 
 @login_required
 def home_view(request):
@@ -112,7 +172,7 @@ def preturi_lista_chart(request, id):
       labels = [pret.data_creare for pret in preturi]    	
       if len(labels) > len(data['labels']):
         data['labels'] = labels
-      dataset['data'] = [pret.valoare for pret in preturi]
+      dataset['data'] = [pret.valoare if pret.valoare > 0 else 'NaN' for pret in preturi]
       dataset['label'] = f'produs {index + 1}'
       dataset['color_index'] = index
       data['datasets'].append(dataset)

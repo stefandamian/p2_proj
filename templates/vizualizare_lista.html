@@ -17,6 +17,8 @@
 									<th>Produs</th>
 									<th>Pret Initial</th>
 									<th>Pret Curent</th>
+									<th>Data inceput</th>
+									<th>Data ultima actualizare</th>	
 									<th>Link produs</th>					
 								</tr>
 							</thead>
@@ -32,8 +34,14 @@
                   	<a>{{produs.nume|capitalize}}</a>
 						</td>	
 						<td><div id="pret_initial{{forloop.counter}}">{{produs|pret_initial|valoare}}</div></td>
-                  <td><div><div id="pret_final{{forloop.counter}}">{{produs|pret_final|valoare}}</div> <div id="status{{forloop.counter}}"></div></div></td>					
-						<td>
+                  <td><div id="pret_final{{forloop.counter}}">{{produs|pret_final|valoare}}</div> <div id="status{{forloop.counter}}"></div></div></td>					
+                  <td>
+                  	{{produs|pret_initial|data_creare}}
+                  </td>
+                  <td>
+                  	{{produs|pret_final|data_creare}}
+                  </td>
+                  <td>
                   	<a href="{{produs.url}}">{{produs.site}}</a>
                   </td>
 					</tr>

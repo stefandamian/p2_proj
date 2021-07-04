@@ -168,7 +168,9 @@ def preturi_lista_chart(request, id):
     }
     for index, produs in enumerate(produse):
       dataset = {}
-      preturi = Pret.objects.filter(produs=produs).order_by('data_creare')
+      preturi = [p for p in Pret.objects.filter(produs=produs).order_by('data_creare')]
+      if len(preturi) > 30:
+      	preturi = preturi[-30:]
       labels = [pret.data_creare for pret in preturi]    	
       if len(labels) > len(data['labels']):
         data['labels'] = labels

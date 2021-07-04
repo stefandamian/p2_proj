@@ -58,14 +58,17 @@ class Command(BaseCommand):
 				self.stdout.write(f'[INFO] Process started {str(date.today())}')
 				log_file.info(f'Process started {str(date.today())}')					
 				start_time = date.today()
-				while True:
+				while True:	
 					if abs((date.today() - start_time).days) > 0:
 						start_time = date.today()
-						log_file.info('Start update_prices')						
-						proc = Popen("p2_runserver update_prices", stdin=PIPE, stdout=PIPE, stderr=PIPE)
+						log_file.info('Start update_prices')	
+						
+						proc = Popen(["p2_runserver", "update_prices"], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+						proc.wait()						
 						out, errs = proc.communicate()
+
 						if proc.returncode != 0:
-							log_file.error('Process "p2_runserver update_prices" could not be started')
+							log_file.error(f'Process "p2_runserver update_prices" finished unexpected ({proc.returncode})')
 						else:
 							log_file.info('Process update_prices finished succesfully')					
 					else:

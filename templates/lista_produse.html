@@ -31,7 +31,7 @@
 									<th>Data ultima actualizare</th>
 								</tr>
 							</thead>
-				<tbody>
+				<tbody class="list_of_products">
                 {% for produs in lista.produse %}
 				    {% if forloop.counter0|divisibleby:2 %}
 					<tr class="table-active">
@@ -46,25 +46,13 @@
                   	<a href="{{produs.url}}">{{produs.site}}</a>
                   </td>
                   <td>
-                  	{% if produs|are_preturi %}
-								{{produs|pret_initial|valoare}}
-							{% else %}
-								Indisponibil
-							{% endif %}                  
+                  	<div class="pret_initial{{forloop.counter}}">{{produs|pret_initial|valoare}}</div>               
                   </td>
                   <td>
-                  	{% if produs|are_preturi %}
-								{{produs|pret_final|valoare}} 
-							{% else %}
-								Indisponibil
-							{% endif %}                     
+                  	<div class="pret_final{{forloop.counter}}">{{produs|pret_final|valoare}}</div> <div class="status{{forloop.counter}}"></div>               
                   </td>
                   <td>
-                  	{% if produs|are_preturi %}
-								{{produs|pret_final|data_creare}}  
-							{% else %}
-								Indisponibil
-							{% endif %}                    
+							{{produs|pret_final|data_creare}}               
                   </td>
 					</tr>
                 {% endfor %}
@@ -76,5 +64,27 @@
   		</div>
 			{% endfor %}
 	
-</div>		
+</div>
+<script>
+	for (var j = 1; j <= {{liste|length}}; j++){
+		collapsed = $("#collapse" + String(j))
+		for (var i = 1; i <= collapsed.find(".list_of_products").children().length; i++){
+   		var stat = (1 - (parseFloat(collapsed.find(".pret_final" + String(i)).text()) / parseFloat(collapsed.find(".pret_initial" + String(i)).text())))*100
+			console.log(collapsed.find(".pret_final" + String(i)).text())
+			console.log(collapsed.find(".pret_initial" + String(i)).text())   
+			stat = -stat;
+			stat = stat.toFixed(2);
+			console.log(stat)
+   		if (stat > 0){
+   	   	collapsed.find(".status" + String(i)).html("+"+String(stat)+"%");
+   		   collapsed.find(".status" + String(i)).css('color', 'red');
+  		 	}
+   		if (stat < 0){
+   	   	collapsed.find(".status" + String(i)).html(String(stat)+"%");
+   	   	collapsed.find(".status" + String(i)).css('color', 'green');
+   		}
+   	}
+   }
+</script>		
 {% endblock %}
+
